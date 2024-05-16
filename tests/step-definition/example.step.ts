@@ -101,7 +101,7 @@ When('clico no link de um produto da tela inicial', async function (this: ICusto
 });
 
 When('ao abrir o produto, clico no botão para comparar produtos', async function (this: ICustomWorld) {
-    await this.page!.getByRole('link', { name: ' Add to Compare' }).click();      
+    await this.page!.getByRole('link', { name: ' Add to Compare' }).click();
 });
 
 When('clico em um produto similar na tela', async function (this: ICustomWorld) {
@@ -110,4 +110,36 @@ When('clico em um produto similar na tela', async function (this: ICustomWorld) 
 
 Then('ao abrir o produto, clico novamente no botão comparar produtos', async function (this: ICustomWorld) {
     await this.page!.getByRole('link', { name: ' Add to Compare' }).click();
+});
+
+When('seleciono o banner New Luma Yoga Collection Get', async function (this: ICustomWorld) {
+    await this.page!.getByRole('link', { name: 'New Luma Yoga Collection Get' }).click();
+});
+
+Then('a página New Luma Yoga Collection deve ser aberta', async function (this: ICustomWorld) {
+    await expect(this.page!.title()).resolves.toMatch("New Luma Yoga Collection");
+});
+
+When('clico no link Orders and Returns', async function (this: ICustomWorld) {
+    await this.page!.getByRole('link', { name: 'Orders and Returns' }).click();
+});
+
+When('informo o OrderId {string}', async function (this: ICustomWorld, order: string) {
+    await this.page!.getByLabel('Order ID', { exact: true }).fill(order);
+});
+
+When('informo o Billing Last Name {string}', async function (this: ICustomWorld, name: string) {
+    await this.page!.getByLabel('Billing Last Name', { exact: true }).fill(name);
+});
+
+When('informo o email {string}', async function (this: ICustomWorld, email: string) {
+    await this.page!.getByLabel('Email', { exact: true }).fill(email);
+});
+
+When('clico no botão Continue', async function (this: ICustomWorld) {
+    await this.page!.getByRole('button', { name: 'Continue' }).click();
+});
+
+Then('será exibida a mensagem You entered incorrect data. Please try again.', async function (this: ICustomWorld) {
+    const result = await this.page!.getByText('You entered incorrect data. Please try again.').textContent();
 });

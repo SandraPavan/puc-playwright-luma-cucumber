@@ -47,3 +47,15 @@ Quando clico no link de um produto da tela inicial
 E ao abrir o produto, clico no botão para comparar produtos
 E clico em um produto similar na tela
 Então ao abrir o produto, clico novamente no botão comparar produtos
+
+Cenário: Deve acessar o departamento dos banners
+Quando seleciono o banner New Luma Yoga Collection Get
+Então a página New Luma Yoga Collection deve ser aberta
+
+Cenário: Não deve permitir o cadastro de uma order aleatória
+Quando clico no link Orders and Returns
+E informo o OrderId "Teste123"
+E informo o Billing Last Name "teste1234"
+E informo o email "teste@teste.com.br"
+E clico no botão Continue
+Então será exibida a mensagem You entered incorrect data. Please try again.
